@@ -17,11 +17,16 @@ abstract class BasePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     _paint.color = widget.color;
+    _paint.strokeWidth = widget.borderWidth;
     double space = widget.space;
     double width = widget.width;
     double height = widget.height;
     double distance = width + space;
     double radius = width / 2;
+
+    Paint borderPaint = Paint()..color = widget.borderColor..style = PaintingStyle.stroke..strokeWidth = widget.borderWidth;
+
+    _paint.color = widget.color;
     for (int? i = 0, c = widget.count; i! < c!; ++i) {
       canvas.drawRRect(
           RRect.fromRectAndRadius(
@@ -31,6 +36,13 @@ abstract class BasePainter extends CustomPainter {
                   height: height),
               Radius.circular(widget.cornerRadius)),
           _paint);
+
+      canvas.drawPath(Path()..addRRect(RRect.fromRectAndRadius(
+          Rect.fromCenter(
+              center: Offset((i * distance) + radius, radius),
+              width: width,
+              height: height),
+          Radius.circular(widget.cornerRadius))), borderPaint);
     }
 
     _paint.color = widget.activeColor;

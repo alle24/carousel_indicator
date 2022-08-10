@@ -11,6 +11,9 @@ class CarouselIndicator extends StatefulWidget {
   /// height of the indicator
   final double height;
 
+  /// width of normal border
+  final double borderWidth;
+
   /// space between indicators.
   final double space;
 
@@ -19,6 +22,9 @@ class CarouselIndicator extends StatefulWidget {
 
   /// active color
   final Color activeColor;
+
+  /// normal border color
+  final Color borderColor;
 
   /// normal color
   final Color color;
@@ -36,10 +42,12 @@ class CarouselIndicator extends StatefulWidget {
     this.width: 20.0,
     this.height: 6,
     this.space: 5.0,
+    this.borderWidth: 1,
     this.count,
     this.cornerRadius: 6,
     this.animationDuration: 300,
     this.color: Colors.white30,
+    this.borderColor: Colors.white,
     this.index,
     this.activeColor: Colors.white,
   })  : assert(count != null && count != 0),
